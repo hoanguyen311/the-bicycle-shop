@@ -1,0 +1,30 @@
+.l-cart-account {
+    width: 270px;
+    background: #F8f8f8;
+    &__row {
+        display: table;
+        width: 100%;
+    }
+    &__button {
+        display: table-cell;
+        color: #fb4d01;
+        text-transform: uppercase;
+        text-align: center;
+        height: 27px;
+        vertical-align: middle;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: none;
+            color: #E24602;
+        }
+        &_bg_red {
+            background: #ee4a02;
+            color: #FFF;
+            &:hover {
+                background: #E24602;
+                color: #FFF;
+            }
+        }
+    }
+}

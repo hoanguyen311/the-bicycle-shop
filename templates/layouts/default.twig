@@ -1,0 +1,39 @@
+{% import "../components/flash-messages.twig" as FlashMessages %}
+{% spaceless %}
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>{{ title|default("The Bicircle Shop") }}</title>
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+		{% if user and user.canAccessKeystone %}
+			<link href="/keystone/styles/content/editor.min.css" rel="stylesheet">
+		{% endif %}
+		<!--[if lt IE 9]>
+			<script src="//cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.js"></script>
+			<script src="//cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		{% block css %}{% endblock %}
+		{% block head %}{% endblock %}
+	</head>
+	<body class="l-body">
+        {% block header %} {% endblock %}
+
+		<main id="body" class="l-main l-main_page_{{section}}">
+			{% block intro %}{% endblock %}
+			{{ FlashMessages.renderMessages(messages) }}
+			{% block content %}{% endblock %}
+		</main>
+		<footer id="footer" class="container">
+			<p>Powered by <a href="http://keystonejs.com" target="_blank">KeystoneJS</a>.</p>
+		</footer>
+        {% block js %}{% endblock %}
+        {% if (user is defined) and (user.canAccessKeystone) %}
+			<script src="/keystone/js/content/editor.js"></script>
+		{% endif %}
+
+	</body>
+</html>
+{% endspaceless %}

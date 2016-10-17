@@ -1,0 +1,24 @@
+{% extends "../layouts/default.twig" %}
+{% block header %}
+    {% embed "../components/header.twig" %}
+        {% block headerModClasses %}l-header_page_index{% endblock %}
+        {% block headerLeft %}
+            <div class="l-header__inner-left-item">
+                {% include '../components/cart-account.twig' %}
+            </div>
+            <!-- <div class="l-header__inner-left-item">
+                <!-- {% include '../components/box.twig' %} -->
+            <!-- </div>  -->
+        {% endblock %}
+
+        {% block headerBanner %}
+            {% include "../components/home-banner-slider.twig" %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+{% block content %}
+<div class="container">
+	<h2 class="category-name">{{categoryName}}</h2>
+    <img src="{{image}}" alt="{{categoryName}}" />
+</div>
+{% endblock %}

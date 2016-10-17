@@ -1,0 +1,27 @@
+.l-box {
+    height: 300px;
+    padding: 0 27px;
+    width: 270px;
+    display: flex;
+    align-items: center;
+
+    &_bg_yellow {
+        background: #fff51f;
+        color: #333333;
+    }
+    &__inner {
+        display: inline-block;
+    }
+    &__heading {
+        font-size: 30px;
+        line-height: 35px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        font-style: italic;
+    }
+    &__body {
+        font-size: 18px;
+        line-height: 20px;
+        font-style: italic;
+    }
+}

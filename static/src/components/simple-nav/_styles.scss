@@ -1,0 +1,28 @@
+.l-simple-nav {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    &__item {
+        padding: 0 5px;
+        display: inline-block;
+    }
+    &__social-icon {
+        display: inline-block;
+        vertical-align: middle;
+        &_facebook {
+            background: url(simple-nav/images/sprite/facebook-white.png) no-repeat 0 0;
+        }
+        &_instagram {
+            background: url(simple-nav/images/sprite/insta-white.png) no-repeat 0 0;
+        }
+        &_twitter {
+            background: url(simple-nav/images/sprite/twitter-white.png) no-repeat 0 0;
+        }
+        &_pinterest {
+            background: url(simple-nav/images/sprite/pin-white.png) no-repeat 0 0;
+        }
+        &_youtube {
+            background: url(simple-nav/images/sprite/youtube-white.png) no-repeat 0 0;
+        }
+    }
+}

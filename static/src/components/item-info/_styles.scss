@@ -1,0 +1,19 @@
+.item-info {
+    text-align: left;
+    max-width: 295px;
+    display: inline-block;
+    &__heading {
+        color: #fff51f;
+        font-size: 40px;
+        line-height: 50px;
+    }
+    &__body {
+        color: #fff51f;
+        font-size: 18px;
+        line-height: 24px;
+        margin-bottom: 90px;
+    }
+    &__button {
+
+    }
+}

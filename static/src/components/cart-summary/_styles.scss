@@ -1,0 +1,36 @@
+.l-cart-summary {
+    background: #fb4d01;
+    display: table-row;
+    width: 100%;
+    &__icon {
+        height: 62px;
+        vertical-align: middle;
+        display: table-cell;
+        padding-left: 25px;
+        padding-right: 16px;
+        width: 35px;
+        // font-size: 35px;
+        // color: #faef03;
+        // @extend .glyphicon;
+        // @extend .glyphicon-shopping-cart;
+        &:after {
+            display: inline-block;
+            background: url(cart-summary/images/sprite/icon-cart.png) no-repeat 0 0;
+            content: '';
+        }
+    }
+    &__info {
+        vertical-align: middle;
+        display: table-cell;
+    }
+    &__total-price {
+        font-size: 18px;
+        line-height: 28px;
+        color: #FFF;
+    }
+    &__item-count {
+        color: #faef03;
+        font-size: 12px;
+        line-height: 14px;
+    }
+}

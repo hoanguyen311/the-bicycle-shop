@@ -1,0 +1,16 @@
+<header class="l-header {% block headerModClasses %}{% endblock %}">
+    <div class="l-header__inner">
+        <div class="l-header__inner-left">
+            <img src="/images/surfhouse-logo.png" alt="Logo" class="l-header__logo" />
+            {% block headerLeft %}
+            {% endblock %}
+        </div>
+        <nav class="l-header__social-nav">
+            {% include '../components/simple-nav.twig' %}
+        </nav>
+    </div>
+    <div class="l-header__banner">
+        {% block headerBanner %}
+        {% endblock %}
+    </div>
+</header>

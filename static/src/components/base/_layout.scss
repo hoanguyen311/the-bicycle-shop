@@ -1,0 +1,9 @@
+.l-body {
+    background: #f8f8f8;
+}
+.l-main {
+    &_page_index {
+        position: relative;
+        z-index: 10;
+    }
+}

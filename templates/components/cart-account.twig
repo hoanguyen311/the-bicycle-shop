@@ -1,0 +1,20 @@
+<div class="l-cart-account" data-js-component="cart-account">
+    <div class="l-cart-account__row">
+        <a href="#" class="l-cart-account__button">Login</a>
+        <a href="#" class="l-cart-account__button">Signup</a>
+    </div>
+    <div class="l-cart-account__row">
+        {% include '../components/cart-summary.twig' %}
+    </div>
+    <div class="l-cart-account__row">
+        <a href="#" class="l-cart-account__button l-cart-account__button_bg_red">
+            View Cart
+        </a>
+        <a href="#" class="l-cart-account__button l-cart-account__button_bg_red">
+            Checkout
+        </a>
+    </div>
+    <div class="l-cart-account__row">
+        {% include '../components/input-group.twig' %}
+    </div>
+</div>

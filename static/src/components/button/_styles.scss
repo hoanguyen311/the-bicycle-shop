@@ -1,0 +1,28 @@
+.button {
+    border: none;
+    background: #FFF;
+    color: #000;
+    box-shadow: none;
+    text-transform: uppercase;
+    padding: 17px 30px;
+    transition: background .3s;
+    &:hover {
+        text-decoration: none;
+    }
+    &_style {
+        &_slider {
+            font-size: 14px;
+            line-height: 15px;
+            font-weight: bold;
+        }
+    }
+    &_bg {
+        &_yellow {
+            background: #fff51f;
+            color: #333;
+            &:hover {
+                background: #FFF;
+            }
+        }
+    }
+}

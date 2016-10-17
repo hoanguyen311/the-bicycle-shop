@@ -1,0 +1,99 @@
+// @import "flexslider/flexslider";
+
+.home-banner-slider {
+    max-width: 100%;
+    position: relative;
+    &__inner {
+
+    }
+    &__image {
+        width: 100%;
+    }
+    &__item {
+        position: relative;
+    }
+    &__content {
+        @extend .container;
+        box-sizing: border-box;
+        padding-right: 100px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: right;
+    }
+    &__direction-nav {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        @extend .container;
+        transform: translate(-50%, -50%);
+        text-align: right;
+    }
+    &__nav-prev,
+    &__nav-next {
+        list-style: none;
+        display: inline-block;
+    }
+    &__prev,
+    &__next {
+        display: block;
+        float: left;
+        width: 30px;
+        height: 50px;
+        background: #FFF;
+        position: relative;
+        color: #333333;
+        font-size: 23px;
+        text-align: center;
+        &:hover {
+            background: #fff51f;
+            color: #333333;
+        }
+        &:before {
+            top: 50%;
+            left: 50%;
+            margin-top: -11px;
+            margin-left: -11px;
+            position: absolute;
+            @extend .glyphicon;
+        }
+    }
+
+    &__prev {
+        &:before {
+            @extend .glyphicon-chevron-left;
+        }
+    }
+    &__next {
+        &:before {
+            @extend .glyphicon-chevron-right;
+        }
+    }
+    &__control-paging {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        font-size: 0;
+        bottom: 63px;
+        left: 0;
+        li {
+            display: inline-block;
+            margin: 0 5px;
+            a {
+                text-indent: -9999px;
+                display: block;
+                background: #faef03;
+                height: 5px;
+                width: 40px;
+                transition: all .3s;
+            }
+        }
+    }
+    &__control-paging li &__active {
+        background: #fb4d01;
+    }
+}
