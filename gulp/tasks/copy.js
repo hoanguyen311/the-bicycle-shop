@@ -18,6 +18,9 @@ module.exports = function(gulp) {
         ])
         .pipe(gulp.dest(path.join(PATHS.public, 'images')));
 
-        return merge(fonts, images);
+        const favicon = gulp.src(path.join(PATHS.src, 'favicon.ico'))
+            .pipe(gulp.dest(PATHS.public));
+
+        return merge(fonts, images, favicon);
     };
 };

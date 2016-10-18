@@ -1,0 +1,23 @@
+.product-slider {
+    background: #f8f8f8;
+    &__heading {
+        color: #707070;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-style: italic;
+        font-size: 22px;
+        line-height: 24px;
+        padding: 30px 20px;
+    }
+    &__list {
+        margin: 0 -15px;
+    }
+    &__item {
+        padding: 0 15px;
+        width: 33.33%;
+        box-sizing: border-box;
+        display: inline-block;
+        vertical-align: top;
+        margin-bottom: 35px;
+    }
+}
