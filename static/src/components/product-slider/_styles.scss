@@ -1,5 +1,6 @@
 .product-slider {
     background: #f8f8f8;
+    position: relative;
     &__heading {
         color: #707070;
         text-transform: uppercase;
@@ -10,14 +11,79 @@
         padding: 30px 20px;
     }
     &__list {
-        margin: 0 -15px;
+
+    }
+    &__item-group-inner {
+        margin: 0 -10px;
     }
     &__item {
-        padding: 0 15px;
-        width: 33.33%;
-        box-sizing: border-box;
+        width: 269px;
         display: inline-block;
         vertical-align: top;
         margin-bottom: 35px;
+        &_in-group {
+            box-sizing: content-box;
+            padding: 0 10px;
+        }
+    }
+    &__controls {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        position: absolute;
+        top: 34px;
+        right: 21px;
+    }
+    &__direction-nav {
+        display: inline-block;
+        margin: 0 9px;
+        cursor: pointer;
+        &:before {
+            content: '';
+            display: inline-block;
+        }
+        &_prev {
+            &:before {
+                background: url(product-slider/images/sprite/arrow-right.png);
+            }
+        }
+        &_next {
+            &:before {
+                background: url(product-slider/images/sprite/arrow-left.png);
+            }
+        }
+    }
+    &_style_recommended &__controls {
+        position: static;
+    }
+    &_style_recommended {
+        position: relative;
+    }
+    &_style_recommended &__direction-nav {
+        z-index: 10;
+        position: absolute;
+        top: 50%;
+        width: 40px;
+        height: 40px;
+        background: #26d2fc;
+        text-align: center;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &_prev {
+            left: 0;
+            transform: translate(0, -50%);
+            &:before {
+                background: url(product-slider/images/sprite/arrow-right-big.png);
+            }
+        }
+        &_next {
+            right: 0;
+            transform: translate(0, -50%);
+            &:before {
+                background: url(product-slider/images/sprite/arrow-left-big.png);
+            }
+        }
     }
 }

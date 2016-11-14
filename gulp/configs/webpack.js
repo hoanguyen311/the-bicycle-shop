@@ -22,9 +22,6 @@ module.exports = function(options) {
             path: path.resolve(PATHS.scripts),
             filename: 'bundle-[name].js'
         }, options.output),
-        // externals: {
-        //     jquery: 'jQuery'
-        // },
         module: {
             preLoaders: [ {
                 test: /\.js$/,
@@ -38,6 +35,8 @@ module.exports = function(options) {
                 }
             } ]
         },
-        plugins: [].concat(options.plugins ? options.plugins : [])
+        plugins: [
+            new ProgressBarPlugin()
+        ].concat(options.plugins ? options.plugins : [])
     };
 };

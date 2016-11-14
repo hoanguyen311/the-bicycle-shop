@@ -1,0 +1,14 @@
+.brands {
+    width: 100%;
+    background: #FFF;
+    display: flex;
+    justify-content: space-around;
+    height: 160px;
+    align-items: center;
+    &__item {
+        display: block;
+    }
+    &__img {
+
+    }
+}

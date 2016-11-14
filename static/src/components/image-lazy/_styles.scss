@@ -1,0 +1,32 @@
+.image-lazy {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    font-size: 0;
+    vertical-align: middle;
+    display: inline-block;
+    &_type_product-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    &__img {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        vertical-align: middle;
+        width: 100%;
+        opacity: 0;
+        transition: opacity .85s
+    }
+    &__background {
+        opacity: 0;
+        transition: opacity .85s;
+    }
+    &_loaded &__img,
+    &_loaded &__img-background {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,31 @@
+.sidebar-widget {
+    padding: 30px 30px 20px;
+    background: #FFF;
+    &__heading {
+        font-size: 24px;
+        line-height: 28px;
+        color: #000000;
+        margin-bottom: 20px;
+    }
+    &__content {
+        margin-bottom: 20px;
+    }
+    &__view-all {
+        font-size: 14px;
+        line-height: 16px;
+        font-weight: bold;
+        font-style: italic;
+        color: #000;
+        &:hover {
+            color: #000;
+            text-decoration: none;
+        }
+    }
+    &__view-all-icon {
+        vertical-align: top;
+        display: inline-block;
+        margin-left: 5px;
+        @extend .glyphicon;
+        @extend .glyphicon-arrow-right;
+    }
+}

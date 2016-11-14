@@ -1,22 +1,33 @@
 <div class="product-card">
+    <a href="/product" class="product-card__anchor">
+        <div class="product-card__image-wrap">
+            {% include '../components/image-lazy.twig'
+                with {
+                    mods: 'image-lazy_type_product-img',
+                    src: product.image,
+                    alt: 'The White Collection SURFBOARD 2014',
+                    aspect: 1,
+                    lazyInit: true
+                }
+            %}
+        </div>
+        <div class="product-card__info">
+            <div class="product-card__name">
+                The White Collection SURFBOARD 2014
+            </div>
+            <div class="product-card__price-wrap">
+                <div class="product-card__price">
+                    €.865.000000
+                </div>
+                <div class="product-card__old-price">
+                    €.860.00
+                </div>
+            </div>
+        </div>
+    </a>
     <!-- <div class="product-card__sticker product-card__sticker_type_new">
-        NEW
+        <div class="product-card__sticker-text">
+            NEW
+        </div>
     </div> -->
-    <div class="product-card__image-wrap">
-        <img src="" alt="" class="product-card__image">
-    </div>
-    <div class="product-card__info">
-        <div class="product-card__name">
-            The White Collection SURFBOARD 2014
-        </div>
-        <div class="product-card__price-wrap">
-            <div class="product-card__price">
-                €.865.000000
-            </div>
-            <div class="product-card__old-price">
-                €.860.00
-            </div>
-        </div>
-    </div>
-
 </div>

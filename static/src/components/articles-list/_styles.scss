@@ -1,0 +1,16 @@
+.articles-list {
+    margin: 0;
+    padding: 0;
+
+    &__item {
+        list-style: none;
+    }
+    &__anchor {
+        color: #555555;
+        font-size: 14px;
+        line-height: 20px;
+        &:hover {
+            color: #555555;
+        }
+    }
+}

@@ -15,6 +15,9 @@
         </a>
     </div>
     <div class="l-cart-account__row">
-        {% include '../components/input-group.twig' %}
+        {% include '../components/input-group.twig' with {
+            placeholder: 'SEARCH',
+            isSearch: true
+        } %}
     </div>
 </div>

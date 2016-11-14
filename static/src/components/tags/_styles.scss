@@ -1,0 +1,24 @@
+.tags {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    &__item {
+        display: inline-block;
+        padding: 0;
+        margin: 0 9px 9px 0;
+
+    }
+    &__anchor {
+        display: block;
+        background: #e9e9e9;
+        color: #333333;
+        padding: 10px;
+        cursor: pointer;
+        &:hover {
+            text-decoration: none;
+
+            color: #000000;
+            background: #faef03;
+        }
+    }
+}

@@ -1,0 +1,41 @@
+.l-footer {
+    background: #373737;
+    color: #FFF;
+    &__content {
+        @extend .container;
+        display: table;
+    }
+    &__heading {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    &__menu {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        padding-top: 20px;
+    }
+    &__link, &__link:hover {
+        color: #FFF;
+        font-size: 12px;
+        line-height: 15px;
+    }
+    &__col {
+        display: table-cell;
+        padding: 65px 0 60px 30px;
+    }
+    &__bottom-bar {
+        background: #333333;
+        font-size: 12px;
+        line-height: 15px;
+    }
+    &__copyright, &__social-nav {
+        height: 46px;
+        vertical-align: middle;
+        display: table-cell;
+    }
+    &__social-nav {
+        text-align: right;
+    }
+}

@@ -1,10 +1,14 @@
-<div class="l-box l-box_bg_yellow">
+<div class="l-box {{mods}}">
     <div class="l-box__inner">
+        {% if heading %}
         <div class="l-box__heading">
-            welcome to surfhouse
+            {{heading}}
         </div>
+        {% endif %}
+        {% if content %}
         <p class="l-box__body">
-            The only online store you will ever need for all your windsurfing and kitesurfing and SUP needs
+            {{content}}
         </p>
+        {% endif %}
     </div>
 </div>

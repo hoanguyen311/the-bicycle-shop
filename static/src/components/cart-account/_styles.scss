@@ -1,6 +1,6 @@
 .l-cart-account {
     width: 270px;
-    background: #F8f8f8;
+
     &__row {
         display: table;
         width: 100%;
@@ -13,7 +13,7 @@
         height: 27px;
         vertical-align: middle;
         cursor: pointer;
-
+        background: #F8f8f8;
         &:hover {
             text-decoration: none;
             color: #E24602;

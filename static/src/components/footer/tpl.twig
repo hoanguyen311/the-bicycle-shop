@@ -1,0 +1,91 @@
+<footer class="l-footer">
+    <div class="l-footer__content">
+        <div class="l-footer__col">
+            <div class="l-footer__heading">
+                Category
+            </div>
+            <ul class="l-footer__menu">
+                <li class="l-footer__item">
+                    <a href="#" class="l-footer__link">Home</a>
+                </li>
+                <li class="l-footer__item">
+                    <a href="#" class="l-footer__link">Home</a>
+                </li>
+                <li class="l-footer__item">
+                    <a href="#" class="l-footer__link">Home</a>
+                </li>
+                <li class="l-footer__item">
+                    <a href="#" class="l-footer__link">Home</a>
+                </li>
+                <li class="l-footer__item">
+                    <a href="#" class="l-footer__link">Home</a>
+                </li>
+            </ul>
+        </div>
+        <div class="l-footer__col">
+            <div class="l-footer__heading">
+                Category
+            </div>
+            <ul class="l-footer__menu">
+                <li class="l-footer__item">
+                    <a href="#" class="l-footer__link">Home</a>
+                </li>
+                <li class="l-footer__item">
+                    <a href="#" class="l-footer__link">Home</a>
+                </li>
+                <li class="l-footer__item">
+                    <a href="#" class="l-footer__link">Home</a>
+                </li>
+                <li class="l-footer__item">
+                    <a href="#" class="l-footer__link">Home</a>
+                </li>
+                <li class="l-footer__item">
+                    <a href="#" class="l-footer__link">Home</a>
+                </li>
+            </ul>
+        </div>
+        <div class="l-footer__col">
+            <div class="l-footer__heading">
+                Category
+            </div>
+            <ul class="l-footer__menu">
+                <li class="l-footer__item">
+                    <a href="#" class="l-footer__link">Home</a>
+                </li>
+                <li class="l-footer__item">
+                    <a href="#" class="l-footer__link">Home</a>
+                </li>
+                <li class="l-footer__item">
+                    <a href="#" class="l-footer__link">Home</a>
+                </li>
+                <li class="l-footer__item">
+                    <a href="#" class="l-footer__link">Home</a>
+                </li>
+                <li class="l-footer__item">
+                    <a href="#" class="l-footer__link">Home</a>
+                </li>
+            </ul>
+        </div>
+        <div class="l-footer__col">
+            {% include "../components/newsletter.twig" %}
+        </div>
+        <div class="l-footer__col">
+            <div class="l-footer__heading">
+                {{ t("Contact us") }}
+            </div>
+            <div class="l-footer__contact">
+                {% include "../components/contact-info.twig" %}
+            </div>
+        </div>
+    </div>
+    <div class="l-footer__bottom-bar">
+        <div class="l-footer__content">
+            <p class="l-footer__copyright">{{ t("2014  SURFHOUSE. All rights reserved - Designed by theuncreativelab.com") }}</p>
+            <div class="l-footer__social-nav">
+                {% include "../components/simple-nav.twig" with {
+                    classMix: 'simple-nav_style_footer'
+                } %}
+            </div>
+        </div>
+    </div>
+</footer>

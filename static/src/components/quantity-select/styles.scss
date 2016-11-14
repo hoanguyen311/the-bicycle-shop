@@ -1,0 +1,52 @@
+.quantity-select {
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+    border: 1px solid #e3e3e3;
+    display: table;
+    font-size: 12px;
+
+    &__control {
+        appearance: none;
+        border-radius: 0;
+        line-height: 18px;
+        display: inline-block;
+        border: none;
+        padding: 4px 15px 3px;
+        background-color: #FFF;
+        display: table-cell;
+        &:focus, &:active {
+            outline: none;
+        }
+    }
+    &__button {
+        width: 25px;
+        height: 25px;
+        display: table-cell;
+        vertical-align: middle;
+        font-size: 16px;
+        line-height: 16px;
+        cursor: pointer;
+        color: #646464;
+        overflow: hidden;
+        user-select: none;
+        border: none;
+        background: #f8f8f8;
+        &_disabled {
+            opacity: .5;
+            cursor: default;
+        }
+        &_up {
+            border-left:  1px solid #e3e3e3;
+            &:before {
+                content: '+';
+            }
+        }
+        &_down {
+            border-right:  1px solid #e3e3e3;
+            &:before {
+                content: '-';
+            }
+        }
+    }
+}

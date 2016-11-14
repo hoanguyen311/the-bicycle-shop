@@ -1,0 +1,21 @@
+<div class="add-to-cart" data-js-component="add-to-cart">
+    <form action="#" class="add-to-cart__form">
+    <div class="add-to-cart__quantity-select">
+        <label for="quantity" class="add-to-cart__label">Quantity</label>
+        {% include "../components/quantity-select.twig" with {
+            inputClassMix: 'add-to-cart__quanity',
+            id: 'quanity',
+            name: 'quantity'
+        } only %}
+    </div>
+
+    <div class="add-to-cart__button-wrap">
+        <input type="hidden" name="{{ sku }}" class="add-to-cart__sku">
+        {% include "../components/button.twig" with {
+            text: t("Add To Cart"),
+            classMix: 'button_bg_orange add-to-cart__submit',
+            type: 'submit'
+        } only %}
+    </div>
+    </form>
+</div>

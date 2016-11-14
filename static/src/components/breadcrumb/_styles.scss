@@ -1,0 +1,26 @@
+.l-breadcrumb {
+    font-size: 12px;
+    line-height: 12px;
+    padding: 18px 0;
+    margin-bottom: 20px;
+    &__item {
+        display: inline-block;
+        padding-right: 7px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        color: #989898;
+        &:hover, &:active, &:visited {
+            text-decoration: none;
+        }
+        &:after {
+            margin-left: 7px;
+            content: '»'
+        }
+    }
+    &__item_current {
+        cursor: default;
+        &:after {
+            content: '';
+        }
+    }
+}

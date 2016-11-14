@@ -1,15 +1,19 @@
-<div class="l-input-group">
+<div class="l-input-group {{ classMix }}" data-js-component="input-group">
     <div class="l-input-group__control-wrap">
         <input
             type="text"
             class="l-input-group__control l-input-group__control_bg_grey"
-            placeholder="SEARCH"
+            placeholder="{{ placeholder }}"
             />
         <i class="l-input-group__clear-text"></i>
     </div>
     <div class="l-input-group__button-wrap">
         <button class="l-input-group__button">
+            {% if isSearch  %}
             <i class="glyphicon glyphicon-search"></i>
+            {% else %}
+                {{ buttonText }}
+            {% endif %}
         </button>
     </div>
 </div>

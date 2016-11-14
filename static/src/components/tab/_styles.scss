@@ -1,0 +1,36 @@
+.tab {
+    &__nav {
+        display: table;
+        margin: 0 20px;
+    }
+    &__nav-item {
+        display: table-cell;
+        padding: 10px 20px;
+        text-transform: uppercase;
+        cursor: pointer;
+        color: #333333;
+        font-size: 12px;
+        line-height: 14px;
+        &_active {
+            cursor: default;
+            background: #26d2fc;
+            position: relative;
+            padding-bottom: 11px;
+            bottom: -1px;
+        }
+    }
+    &__content {
+        font-size: 11px;
+        color: rgb(128, 128, 128);
+        line-height: 1.364;
+
+    }
+    &__content-item {
+        padding: 10px;
+        display: none;
+        border: 1px solid #d6d4d4;
+        &_active {
+            display: block;
+        }
+    }
+}

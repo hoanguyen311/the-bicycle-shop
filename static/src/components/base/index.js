@@ -1,38 +1,71 @@
 import $ from 'jquery';
 import EventEmitter from 'events';
+import BemUtils from '~/utils/BEM';
 
 class Base extends EventEmitter {
     constructor($el, options) {
         super();
         this.$el = $el;
         this.config = $.extend(true, {}, this.constructor.defaultConfig, options);
-        this.$el.removeAttr(`data-${_COMPONENT_NAME_ATTR} data-${_COMPONENT_PARAMS_ATTR}`);
+
+        if (this.config.ui && Object.keys(this.config.ui).length > 0) {
+            this.bindUiElement();
+        }
         this.init();
+
+        this.$el
+            //.removeAttr(`data-${_COMPONENT_NAME_ATTR} data-${_COMPONENT_PARAMS_ATTR} data-${_COMPONENT_LAZY_INIT_ATTR}`)
+            .attr('data-js-inited', true);
+        this.$el.trigger('component:init');
     }
-    static initComponentsOnNode(root) {
+    bindUiElement() {
+        for(let uiKey in this.config.ui) {
+            if (this.config.ui.hasOwnProperty(uiKey)) {
+                this[uiKey] = this.getElement(this.config.ui[uiKey]);
+            }
+        }
+    }
+    static getComponentOnNode($node, componentName) {
+
+    }
+    static initComponentsOnNode(root, forced) {
         const $root = $(root);
         const componentName = $root.data(_COMPONENT_NAME_ATTR);
-        const componentParams = $root.data(_COMPONENT_PARAMS_ATTR);
+
+        if (!forced && $root.data(_COMPONENT_LAZY_INIT_ATTR)) {
+            return;
+        }
+
+        if (componentName) {
+            this.initComponent($root, componentName);
+        }
+
+        this.initChildren($root, forced);
+    }
+    static initComponent($el, componentName) {
+        const componentParams = $el.data(_COMPONENT_PARAMS_ATTR);
         let params = {};
 
-
-        if (componentName && window.__components__[componentName]) {
+        if (window.__components__[componentName]) {
             if (typeof componentParams === 'string') {
                 try {
-                    params = JSON.parse(componentParams);
+                    params = (new Function(`return ${componentParams.replace(/\n/g, '')};`)).call(null);
                 } catch(e) {
+                    console.warn(`Can not parse componentParams`, e.message);
                     params = {};
                 }
             }
-            $root.data(componentName , new window.__components__[componentName]($root, params));
+            $el.data(componentName , new window.__components__[componentName]($el, params));
             this._length += 1;
         }
-
+    }
+    static initChildren($root, forced) {
         this.getClosestChildren($root)
         .each((i, el) => {
-            this.initComponentsOnNode(el);
+            this.initComponentsOnNode(el, forced);
         });
     }
+
     static getClosestChildren($root) {
         const componentSelector = `[data-${_COMPONENT_NAME_ATTR}]`;
         let $children = $root.children();
@@ -48,17 +81,28 @@ class Base extends EventEmitter {
     static get defaultConfig() {
         return {};
     }
-    static getComponentName() {
-        return 'Base';
+    static get blockName() {
+        console.warn(`Please implement static get blockName in component's class ${this.name}`);
+        return 'Unknown';
+    }
+    addMod(modName, modValue) {
+        const modClass = BemUtils.buildModClass(this.constructor.blockName, ...arguments);
+        this.$el.addClass(modClass);
+    }
+    getElement(name) {
+        // const elementClass = blockFactory(this.constructor.blockName)(name)();
+        const elementClass = BemUtils.buildElementClass(this.constructor.blockName, name);
+        return $(`.${elementClass}`, this.$el);
     }
     trigger(eventName, ...params) {
         this.emit(eventName, ...params);
     }
     init() {
-        throw new Error(`Please implement init method for component ${this.constructor.componentName()}`);
+        throw new Error(`Please implement init method for component [${this.constructor.name}]`);
     }
 }
 
+const _COMPONENT_LAZY_INIT_ATTR = 'js-component-lazy-init';
 const _COMPONENT_NAME_ATTR = 'js-component';
 const _COMPONENT_PARAMS_ATTR = 'js-component-params';
 

@@ -1,0 +1,12 @@
+<div class="sidebar-widget">
+    <div class="sidebar-widget__heading">
+        {{ heading }}
+    </div>
+    <div class="sidebar-widget__content">
+        {% block sidebarWidgetContent %}{% endblock %}
+    </div>
+    <a href="{{ link }}" class="sidebar-widget__view-all">
+        View All
+        <i class="sidebar-widget__view-all-icon"></i>
+    </a>
+</div>

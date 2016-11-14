@@ -1,0 +1,21 @@
+.add-to-cart {
+    display: table;
+    &__quantity-select {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+    }
+    &__label {
+        display: block;
+        color: #333333;
+        font-size: 12px;
+        line-height: 14px;
+        margin-bottom: 5px;
+
+    }
+    &__button-wrap {
+        padding-left: 60px;
+        display: table-cell;
+        vertical-align: middle;
+    }
+}

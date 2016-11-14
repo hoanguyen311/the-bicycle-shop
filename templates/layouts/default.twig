@@ -15,7 +15,9 @@
 			<script src="//cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.js"></script>
 			<script src="//cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
-		{% block css %}{% endblock %}
+		{% block css %}
+            <link rel="stylesheet" href="{{ getCssStatic(section) }}">
+        {% endblock %}
 		{% block head %}{% endblock %}
 	</head>
 	<body class="l-body">
@@ -24,12 +26,30 @@
 		<main id="body" class="l-main l-main_page_{{section}}">
 			{% block intro %}{% endblock %}
 			{{ FlashMessages.renderMessages(messages) }}
-			{% block content %}{% endblock %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <div class="l-sidebar">
+                            {% block sidebarItems %}{% endblock %}
+                        </div>
+                    </div>
+                    <div class="col-xs-9">
+                        {% block content %}{% endblock %}
+                    </div>
+                </div>
+            </div>
 		</main>
-		<footer id="footer" class="container">
-			<p>Powered by <a href="http://keystonejs.com" target="_blank">KeystoneJS</a>.</p>
-		</footer>
-        {% block js %}{% endblock %}
+        <div class="container">
+            <section class="l-secondary-section">
+                {% block secondarySection %}{% endblock %}
+            </section>
+        </div>
+        {% block footer %}
+		      {% include "../components/footer.twig" %}
+        {% endblock %}
+        {% block js %}
+            <script src="{{ getJsStatic(section) }}"></script>
+        {% endblock %}
         {% if (user is defined) and (user.canAccessKeystone) %}
 			<script src="/keystone/js/content/editor.js"></script>
 		{% endif %}

@@ -1,0 +1,12 @@
+.newsletter {
+    &__heading {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    &__description {
+        margin-bottom: 16px;
+        font-size: 12px;
+        line-height: 15px;
+    }
+}

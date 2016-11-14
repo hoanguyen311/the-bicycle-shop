@@ -1,0 +1,18 @@
+.contact-info {
+    font-size: 14px;
+    line-height: 18px;
+
+    &__label {
+        &:after {
+            content: ':';
+        }
+        display: inline-block;
+        width: 60px;
+    }
+    &__value {
+        padding: 0 0 0 0px;
+        &_color_yellow, &_color_yellow:hover {
+            color: #faef03;
+        }
+    }
+}

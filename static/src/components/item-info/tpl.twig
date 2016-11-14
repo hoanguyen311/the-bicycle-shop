@@ -6,6 +6,9 @@
         Super easy going freeride boards based on the X-Cite Ride shape concept with additional control and super easy jibing.
     </p>
     <div class="item-info__button-wrap">
-        {% include '../components/button.twig' with { style : 'slider', bg: 'yellow', text: 'Buy Now' } %}
+        {% include '../components/button.twig' with {
+            classMix: 'button_style_slider button_bg_yellow',
+            text: t('View more')
+        } only %}
     </div>
 </div>

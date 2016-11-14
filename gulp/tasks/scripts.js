@@ -7,6 +7,7 @@ const config = require('../configs/components');
 const fs = require('fs');
 const insert = require('gulp-insert');
 const rename = require('gulp-rename');
+const filter = require('gulp-filter');
 const gutil = require('gulp-util');
 const getWebpackConfig = require('../configs/webpack');
 const babel = require('gulp-babel');
@@ -84,6 +85,8 @@ module.exports = function(gulp) {
                 webpackConfig.devtool = false;
             }
 
+            const filterJs = filter('**/*.js', { restore: true });
+
             return gulp.src(path.resolve(PATHS.components, 'index.js'))
                 .pipe(insert.append(prependCode))
                 .pipe(rename(`-temp-${config.scriptEntryPrefixer}-${name}.js`))
@@ -95,7 +98,9 @@ module.exports = function(gulp) {
                 }))
                 .pipe(gulp.dest(path.resolve(PATHS.scripts, 'entries')))
                 .pipe(webpackStream(webpackConfig, webpack, onWebpackBuildDone))
+                .pipe(filterJs)
                 .pipe(rev())
+                .pipe(filterJs.restore)
                 .pipe(gulp.dest(PATHS.scripts))
                 .pipe(rev.manifest(`rev-manifest-${name}.json`, {
                     merge: true

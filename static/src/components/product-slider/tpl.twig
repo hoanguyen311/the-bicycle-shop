@@ -1,25 +1,113 @@
-<div class="product-slider" data-js-component="product-slider">
+<div class="product-slider {{ classMix }}"
+    data-js-component="product-slider"
+    {% if sixProductsPerSlide %}
+    data-js-component-params="
+        {
+            sliderConfig: {
+                selector: '.product-slider__list > .product-slider__item-group',
+                maxItems: 1,
+                itemMargin: 0,
+                width: 'auto'
+            },
+            sixProductsPerSlide: true
+        }
+    "
+    {% endif %}
+    >
     <div class="product-slider__heading">
         New products
     </div>
+    <ul class="product-slider__controls">
+        <li class="product-slider__direction-nav product-slider__direction-nav_prev"></li>
+        <li class="product-slider__direction-nav product-slider__direction-nav_next"></li>
+    </ul>
     <div class="product-slider__list">
-        <div class="product-slider__item">
-            {% include '../components/product-card.twig' %}
+        {% if sixProductsPerSlide %}
+        <div class="product-slider__item-group">
+            <div class="product-slider__item-group-inner">
+                <div class="product-slider__item product-slider__item_in-group">
+                    {% include '../components/product-card.twig' with { product: { image: '/images/mock/1.png' } } %}
+                </div>
+                <div class="product-slider__item product-slider__item_in-group">
+                    {% include '../components/product-card.twig' with { product: { image: '/images/mock/2.jpeg' } } %}
+                </div>
+                <div class="product-slider__item product-slider__item_in-group">
+                    {% include '../components/product-card.twig' with { product: { image: '/images/mock/3.jpg' } } %}
+                </div>
+                <div class="product-slider__item product-slider__item_in-group">
+                    {% include '../components/product-card.twig' with { product: { image: '/images/mock/4.jpg' } } %}
+                </div>
+                <div class="product-slider__item product-slider__item_in-group">
+                    {% include '../components/product-card.twig' with { product: { image: '/images/mock/1.png' } } %}
+                </div>
+                <div class="product-slider__item product-slider__item_in-group">
+                    {% include '../components/product-card.twig' with { product: { image: '/images/mock/1.png' } } %}
+                </div>
+            </div>
         </div>
-        <div class="product-slider__item">
-            {% include '../components/product-card.twig' %}
+        <div class="product-slider__item-group">
+            <div class="product-slider__item-group-inner">
+                <div class="product-slider__item product-slider__item_in-group">
+                    {% include '../components/product-card.twig' with { product: { image: '/images/mock/1.png' } } %}
+                </div>
+                <div class="product-slider__item product-slider__item_in-group">
+                    {% include '../components/product-card.twig' with { product: { image: '/images/mock/2.jpeg' } } %}
+                </div>
+                <div class="product-slider__item product-slider__item_in-group">
+                    {% include '../components/product-card.twig' with { product: { image: '/images/mock/3.jpg' } } %}
+                </div>
+                <div class="product-slider__item product-slider__item_in-group">
+                    {% include '../components/product-card.twig' with { product: { image: '/images/mock/4.jpg' } } %}
+                </div>
+                <div class="product-slider__item product-slider__item_in-group">
+                    {% include '../components/product-card.twig' with { product: { image: '/images/mock/1.png' } } %}
+                </div>
+                <div class="product-slider__item product-slider__item_in-group">
+                    {% include '../components/product-card.twig' with { product: { image: '/images/mock/1.png' } } %}
+                </div>
+            </div>
         </div>
-        <div class="product-slider__item">
-            {% include '../components/product-card.twig' %}
+        <div class="product-slider__item-group">
+            <div class="product-slider__item-group-inner">
+                <div class="product-slider__item product-slider__item_in-group">
+                    {% include '../components/product-card.twig' with { product: { image: '/images/mock/1.png' } } %}
+                </div>
+                <div class="product-slider__item product-slider__item_in-group">
+                    {% include '../components/product-card.twig' with { product: { image: '/images/mock/2.jpeg' } } %}
+                </div>
+                <div class="product-slider__item product-slider__item_in-group">
+                    {% include '../components/product-card.twig' with { product: { image: '/images/mock/3.jpg' } } %}
+                </div>
+                <div class="product-slider__item product-slider__item_in-group">
+                    {% include '../components/product-card.twig' with { product: { image: '/images/mock/4.jpg' } } %}
+                </div>
+                <div class="product-slider__item product-slider__item_in-group">
+                    {% include '../components/product-card.twig' with { product: { image: '/images/mock/1.png' } } %}
+                </div>
+                <div class="product-slider__item product-slider__item_in-group">
+                    {% include '../components/product-card.twig' with { product: { image: '/images/mock/1.png' } } %}
+                </div>
+            </div>
         </div>
-        <div class="product-slider__item">
-            {% include '../components/product-card.twig' %}
-        </div>
-        <div class="product-slider__item">
-            {% include '../components/product-card.twig' %}
-        </div>
-        <div class="product-slider__item">
-            {% include '../components/product-card.twig' %}
-        </div>
+        {% else %}
+            <div class="product-slider__item">
+                {% include '../components/product-card.twig' with { product: { image: '/images/mock/1.png' } } %}
+            </div>
+            <div class="product-slider__item">
+                {% include '../components/product-card.twig' with { product: { image: '/images/mock/1.png' } } %}
+            </div>
+            <div class="product-slider__item">
+                {% include '../components/product-card.twig' with { product: { image: '/images/mock/1.png' } } %}
+            </div>
+            <div class="product-slider__item">
+                {% include '../components/product-card.twig' with { product: { image: '/images/mock/1.png' } } %}
+            </div>
+            <div class="product-slider__item">
+                {% include '../components/product-card.twig' with { product: { image: '/images/mock/1.png' } } %}
+            </div>
+            <div class="product-slider__item">
+                {% include '../components/product-card.twig' with { product: { image: '/images/mock/1.png' } } %}
+            </div>
+        {% endif %}
     </div>
 </div>

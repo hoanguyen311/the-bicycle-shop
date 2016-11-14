@@ -9,8 +9,20 @@
         background: #fff51f;
         color: #333333;
     }
+    &_bg_grey {
+        background: #e0e0e0;
+        color: #FFF;
+    }
+    &_style_store-status {
+        width: auto;
+        text-align: right;
+    }
     &__inner {
         display: inline-block;
+    }
+    &_style_store-status &__heading {
+        width: 50%;
+        float: right;
     }
     &__heading {
         font-size: 30px;

@@ -2,20 +2,23 @@
     top: 0;
     width: 100%;
     height: 175px;
-
+    overflow: hidden;
     &_page_index {
         height: auto;
         margin-bottom: -18px;
     }
+    &_page_product {
+        height: 350px;
+    }
     &__inner {
-        @extend .container;
         position: relative;
-        z-index: 10;
+        @extend .container;
+        z-index: 9;
     }
     &__inner-left {
+
         position: absolute;
-        top: 25px;
-        left: 0px;
+        top: 20px;
     }
     &__inner-left-item {
         margin-bottom: 9px;
@@ -33,5 +36,10 @@
     &__banner {
         z-index: 9;
         min-height: 175px;
+    }
+    &__banner-image {
+        width: 100%;
+        height: 350px;
+        display: block;
     }
 }

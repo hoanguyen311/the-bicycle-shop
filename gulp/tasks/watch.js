@@ -6,13 +6,13 @@ const path = require('path');
 module.exports = function(gulp) {
 
     return function() {
-        gulp.watch(path.join(PATHS.components, '**/*.scss'), [ 'styles' ]);
-        gulp.watch(path.join(PATHS.components, '**/*.js'), [ 'scripts' ]);
-        gulp.watch(path.join(PATHS.components, '**/*.twig'), [ 'views' ]);
-        gulp.watch(path.join(PATHS.images, 'sprites/**/*.png'), [ 'sprites', 'styles' ]);
+        gulp.watch('**/*.scss', { cwd: PATHS.components }, [ 'styles' ]);
+        gulp.watch('**/*.png', { cwd: PATHS.components }, [ 'styles' ]);
+        gulp.watch('**/*.js', { cwd: PATHS.src }, [ 'scripts' ]);
+        gulp.watch('**/*.twig', { cwd: PATHS.components }, [ 'views' ]);
         gulp.watch([
-            path.resolve(PATHS.src, 'fonts/**/*'),
-            path.resolve(PATHS.src, 'images/**/*')
-        ], [ 'copy' ]);
+            'fonts/**/*',
+            'images/**/*'
+        ], { cwd: PATHS.src }, [ 'copy' ]);
     };
 };

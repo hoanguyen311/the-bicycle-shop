@@ -1,0 +1,16 @@
+{% embed "../components/sidebar-widget.twig" with
+    { heading: 'Articles Experts' } only
+%}
+    {% block sidebarWidgetContent %}
+    <ul class="articles-list">
+        <li class="articles-list__item"><a href="#" class="articles-list__anchor">LG Spectrum review</a></li>
+        <li class="articles-list__item"><a href="#" class="articles-list__anchor">Verizon Droid Xyboard 8.2 and 10.1 review</a></li>
+        <li class="articles-list__item"><a href="#" class="articles-list__anchor">Mac mini review (mid 2011)</a></li>
+        <li class="articles-list__item"><a href="#" class="articles-list__anchor">Wacom Inkling review</a></li>
+        <li class="articles-list__item"><a href="#" class="articles-list__anchor">Sonos Play:3 review</a></li>
+        <li class="articles-list__item"><a href="#" class="articles-list__anchor">HTC Radar 4G review</a></li>
+        <li class="articles-list__item"><a href="#" class="articles-list__anchor">Canon PowerShot S100 </a></li>
+        <li class="articles-list__item"><a href="#" class="articles-list__anchor">Apple iMac </a></li>
+    </ul>
+    {% endblock %}
+{% endembed %}

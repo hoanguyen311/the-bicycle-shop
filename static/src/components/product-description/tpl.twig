@@ -1,0 +1,31 @@
+<div class="p-description">
+    <h2 class="p-description__product-name">
+        PEEKY CROPPED
+    </h2>
+    <div class="p-description__row">
+        <div class="p-description__col">
+            <div class="p-description__price">
+                €. 578.50
+            </div>
+        </div>
+        <div class="p-description__col">
+            <div class="p-description__sku">
+                {{ t("SKU") }}: ABC
+            </div>
+            <div class="p-description__status">
+                {{ t("Availability") }}: In stock
+            </div>
+        </div>
+    </div>
+    <div class="p-description__row">
+        <h3 class="p-description__heading">{{ t('Overview') }}</h3>
+        <p class="p-description__overview">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. When an unknown printer took a galley of type.
+        </p>
+    </div>
+    <div class="p-description__row">
+        <div class="p-description_col">
+            {% include "../components/add-to-cart.twig" %}
+        </div>
+    </div>
+</div>

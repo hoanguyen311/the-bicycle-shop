@@ -1,0 +1,18 @@
+<div class="newsletter">
+    <div class="newsletter__heading">
+        {{ t("Newsletter") }}
+    </div>
+    <p class="newsletter__description">
+        {{ t("Join thousands of other people subscribe to our news") }}
+    </p>
+    <div class="newsletter__form">
+        <form action="">
+            {% include "../components/input-group.twig" with {
+                buttonText: t("Submit"),
+                classMix: 'l-input-group_style_newsletter',
+                placeholder: 'YOUR EMAIL'
+            } only %}
+        </form>
+
+    </div>
+</div>

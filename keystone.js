@@ -73,6 +73,9 @@ keystone.set('locals', {
         } catch (e) {
             return path.join('/styles/', `bundle-${viewName}.css`);
         }
+    },
+    t: function(text) {
+        return text;
     }
 });
 

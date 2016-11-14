@@ -7,9 +7,15 @@
             <div class="l-header__inner-left-item">
                 {% include '../components/cart-account.twig' %}
             </div>
-            <!-- <div class="l-header__inner-left-item">
-                <!-- {% include '../components/box.twig' %} -->
-            <!-- </div>  -->
+            <div class="l-header__inner-left-item">
+                {% include '../components/box.twig' with
+                    {
+                        mods: 'l-box_bg_yellow',
+                        heading: 'welcome to the shop',
+                        content: 'The only online store you will ever need for all your windsurfing and kitesurfing and SUP needs'
+                    }
+                %}
+            </div>
         {% endblock %}
 
         {% block headerBanner %}
@@ -18,20 +24,38 @@
     {% endembed %}
 {% endblock %}
 
-
-{% block content %}
-	<div class="container">
-		<div class="row">
-		    <div class="col-xs-3">
-                {% include "../components/aside-menu.twig" %}
-		    </div>
-            <div class="col-xs-9">
-                {% include "../components/product-slider.twig" %}
-            </div>
-		</div>
-	</div>
+{% block sidebarItems %}
+    <div class="l-sidebar__item">
+        {% include "../components/aside-menu.twig" %}
+    </div>
+    <div class="l-sidebar__item">
+        {% include '../components/box.twig' with
+            {
+                mods: 'l-box_bg_grey l-box_style_store-status',
+                heading: 'Now is open'
+            }
+        %}
+    </div>
+    <div class="l-sidebar__item">
+        {% include "../components/tags-widget.twig" %}
+    </div>
+    <div class="l-sidebar__item">
+        {% include "../components/articles-list.twig" %}
+    </div>
 {% endblock %}
 
+{% block content %}
+    {% include "../components/product-slider.twig" with {
+        sixProductsPerSlide: true
+    } only %}
+    {% include "../components/product-slider.twig" %}
+    {% include "../components/product-slider.twig" %}
+    {% include "../components/product-slider.twig" %}
+    {% include "../components/product-slider.twig" %}
+{% endblock %}
+{% block secondarySection %}
+    {% include "../components/brands.twig" %}
+{% endblock %}
 {% block css %}
     <link rel="stylesheet" href="{{ getCssStatic('index') }}">
 {% endblock %}

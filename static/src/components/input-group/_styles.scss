@@ -15,6 +15,9 @@
         color: #0c0c0c;
         border: none;
         padding-left: 13px;
+        &:active, &:focus {
+            box-shadow: none;
+        }
         &_bg_grey {
             background: #e9e9e9;
         }
@@ -23,7 +26,7 @@
         @extend .glyphicon;
         @extend .glyphicon-remove;
 
-        visibility: hidden;
+        // visibility: hidden;
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
@@ -48,5 +51,22 @@
         border-radius: 0px;
         color: #FFF;
         font-size: 14px;
+    }
+    &_style_newsletter {
+        width: 250px;
+    }
+    &_style_newsletter &__control-wrap {
+        width: 180px;
+        background: #fff51f;
+    }
+    &_style_newsletter &__clear-text {
+        color: #333;
+    }
+    &_style_newsletter &__control {
+        background: #fff51f;
+    }
+    &_style_newsletter &__button {
+        width: 100%;
+        text-transform: uppercase;
     }
 }
