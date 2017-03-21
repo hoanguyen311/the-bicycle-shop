@@ -14,7 +14,7 @@ module.exports =
             const tasks = [];
             let finder = null;
 
-            for (let page in componentsRoot) {
+            for (const page in componentsRoot) {
                 if (componentsRoot.hasOwnProperty(page)) {
                     finder = new ComponentFinder({
                         indexFile: path.resolve(this.config.viewPath, componentsRoot[page]),

@@ -11,7 +11,7 @@ module.exports = function(rule, token, image) {
 
     rule.walkDecls('background-image', (decl) => {
         const url = libs.getImageUrl(decl.toString());
-        decl.value = `url(${path.resolve(publicCssPath, url)})`;
+        decl.value = `url(${path.resolve(publicCssPath, url[0])})`;
     });
 
     [ 'width', 'height' ].forEach((prop) => {

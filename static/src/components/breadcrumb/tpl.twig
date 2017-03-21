@@ -1,5 +1,10 @@
 <div class="l-breadcrumb">
-    <a href="#" class="l-breadcrumb__item">Home</a>
-    <a href="#" class="l-breadcrumb__item">Aparel</a>
-    <span class="l-breadcrumb__item l-breadcrumb__item_current">Aparel</span>
+    {% for item in breadcrumb %}
+        {% if loop.last %}
+            <span class="l-breadcrumb__item l-breadcrumb__item_current">{{item.label}}</span>
+        {% else %}
+            <a href="{{item.url}}" class="l-breadcrumb__item">{{item.label}}</a>
+        {% endif %}
+    {% endfor %}
+
 </div>

@@ -5,11 +5,9 @@ const $window = $(window);
 class LazyLoadManager {
     constructor() {
         this.imgs = [];
-        this.update = debounce(this.update.bind(this), 10);
-        $window.on('resize', this.updateWindowSize.bind(this));
         this.updateWindowSize();
-        console.log('init', this.windowSize);
-        $window.on('scroll resize', this.update);
+        $window.on('resize', debounce(() => this.updateWindowSize(), 100));
+        $window.on('scroll resize', debounce(() => this.update(), 200));
     }
 
     updateWindowSize() {
@@ -33,4 +31,4 @@ class LazyLoadManager {
     }
 }
 
-module.exports = new LazyLoadManager;
+module.exports = new LazyLoadManager();

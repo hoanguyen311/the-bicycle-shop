@@ -10,7 +10,7 @@
 var _ = require('lodash');
 var Category = require('keystone').list('Category');
 
-function getCategoryMenuData(callback, next) {
+function getCategoryMenuData(callback) {
     var q = Category.model.find();
 
     q.exec(function(err, results) {
@@ -35,21 +35,19 @@ function getCategoryMenuData(callback, next) {
     or replace it with your own templates / logic.
 */
 exports.initLocals = function (req, res, next) {
-    res.locals.navLinks = [
-        { label: 'Home', key: 'home', href: '/' },
-        { label: 'Blog', key: 'blog', href: '/blog' },
-        { label: 'Contact', key: 'contact', href: '/contact' }
+    res.locals.breadcrumb = [
+        { label: 'Home', key: 'home', url: '/' }
     ];
+
     res.locals.user = req.user;
 
-    getCategoryMenuData(function(err, children) {
-        res.locals.navLinks.push({
-            label: 'Category',
-            key: 'category',
-            href: false,
-            children: children
-        });
+    res.locals.categoriesMenu = [];
 
+    getCategoryMenuData(function(err, children) {
+        res.locals.categoriesMenu = {
+            heading: 'Danh mục sản phẩm',
+            items: children
+        };
         next(err);
     });
 

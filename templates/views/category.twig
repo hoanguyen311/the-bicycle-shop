@@ -1,24 +1,39 @@
 {% extends "../layouts/default.twig" %}
+
 {% block header %}
     {% embed "../components/header.twig" %}
-        {% block headerModClasses %}l-header_page_index{% endblock %}
+        {% block headerModClasses %}l-header_page_product{% endblock %}
         {% block headerLeft %}
             <div class="l-header__inner-left-item">
                 {% include '../components/cart-account.twig' %}
             </div>
-            <!-- <div class="l-header__inner-left-item">
-                <!-- {% include '../components/box.twig' %} -->
-            <!-- </div>  -->
         {% endblock %}
 
         {% block headerBanner %}
-            {% include "../components/home-banner-slider.twig" %}
+            <img src="/images/banners/banner-1.jpg" alt="" class="l-header__banner-image">
         {% endblock %}
+
     {% endembed %}
 {% endblock %}
+
+{% block sidebarItems %}
+    <div class="l-sidebar__item">
+        {% include "../components/aside-menu.twig" with categoriesMenu only %}
+    </div>
+    <div class="l-sidebar__item">
+        {% include '../components/box.twig' with
+            {
+                mods: 'l-box_bg_grey l-box_style_store-status',
+                heading: 'Now is open'
+            }
+        %}
+    </div>
+    <div class="l-sidebar__item">
+        {% include "../components/tags-widget.twig" %}
+    </div>
+{% endblock %}
+
 {% block content %}
-<div class="container">
-	<h2 class="category-name">{{categoryName}}</h2>
-    <img src="{{image}}" alt="{{categoryName}}" />
-</div>
+    {% include "../components/breadcrumb.twig" %}
+    {% include "../components/product-list.twig" with productsList %}
 {% endblock %}

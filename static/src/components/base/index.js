@@ -2,6 +2,10 @@ import $ from 'jquery';
 import EventEmitter from 'events';
 import BemUtils from '~/utils/BEM';
 
+const _COMPONENT_LAZY_INIT_ATTR = 'js-component-lazy-init';
+const _COMPONENT_NAME_ATTR = 'js-component';
+const _COMPONENT_PARAMS_ATTR = 'js-component-params';
+
 class Base extends EventEmitter {
     constructor($el, options) {
         super();
@@ -19,14 +23,30 @@ class Base extends EventEmitter {
         this.$el.trigger('component:init');
     }
     bindUiElement() {
-        for(let uiKey in this.config.ui) {
+        for (const uiKey in this.config.ui) {
             if (this.config.ui.hasOwnProperty(uiKey)) {
                 this[uiKey] = this.getElement(this.config.ui[uiKey]);
             }
         }
     }
     static getComponentOnNode($node, componentName) {
+        const component = $node.data(componentName);
+        const assignedComponentName = $node.data(_COMPONENT_NAME_ATTR);
 
+        if (component &&
+            component.constructor.blockName === componentName &&
+            component instanceof Base &&
+            assignedComponentName === componentName) {
+            return component;
+        }
+
+        return false;
+    }
+    collectComponents(type = Base, $root = this.$el) {
+        const children = this.$el.find('*').toArray();
+
+        return children.map((el) => Base.getComponentOnNode($(el), type.blockName))
+            .filter((comp) => comp instanceof type);
     }
     static initComponentsOnNode(root, forced) {
         const $root = $(root);
@@ -87,10 +107,30 @@ class Base extends EventEmitter {
     }
     addMod(modName, modValue) {
         const modClass = BemUtils.buildModClass(this.constructor.blockName, ...arguments);
+
         this.$el.addClass(modClass);
     }
+    removeMod(modName, modValue) {
+        const modClassName = [];
+
+        if (modValue === true) {
+            BemUtils.parseEl(this.$el).blMods.forEach(mod => {
+                if (mod.modName === name) {
+                    modClassName.push(mod.className);
+                }
+            });
+        } else {
+            modClassName.push(BemUtils.buildModClass(this.constructor.blockName, ...arguments));
+        }
+
+        this.$el.removeClass(modClassName.join(' '));
+    }
+    hasMod(name, value) {
+        const modClassName = BemUtils.buildModName(this.constructor.blockName, ...arguments);
+
+        return this.$root.hasClass(modClassName);
+    }
     getElement(name) {
-        // const elementClass = blockFactory(this.constructor.blockName)(name)();
         const elementClass = BemUtils.buildElementClass(this.constructor.blockName, name);
         return $(`.${elementClass}`, this.$el);
     }
@@ -102,8 +142,6 @@ class Base extends EventEmitter {
     }
 }
 
-const _COMPONENT_LAZY_INIT_ATTR = 'js-component-lazy-init';
-const _COMPONENT_NAME_ATTR = 'js-component';
-const _COMPONENT_PARAMS_ATTR = 'js-component-params';
+
 
 export default Base;

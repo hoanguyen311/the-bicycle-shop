@@ -35,6 +35,7 @@ class ProductSlider extends Base {
         this._slider = null;
     }
     init() {
+
         this.$el.flexslider({
             ...this.config.sliderConfig,
             after: (slider) => this.triggerLazyLoad()

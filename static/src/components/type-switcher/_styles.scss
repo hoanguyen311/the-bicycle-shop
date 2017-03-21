@@ -1,0 +1,20 @@
+.type-switcher {
+    display: table;
+
+    &__label {
+        display: table-cell;
+        padding-right: 10px;
+        vertical-align: middle;
+    }
+    &__item {
+        display: table-cell;
+        vertical-align: middle;
+        cursor: pointer;
+        padding-right: 10px;
+        font-size: 26px;
+        color: #b9b9b9;
+        &_active {
+            color: #26d2fc;
+        }
+    }
+}

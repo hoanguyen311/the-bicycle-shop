@@ -1,0 +1,14 @@
+.sort {
+    position: relative;
+    z-index: 10;
+    display: table;
+    &__label {
+        display: table-cell;
+        vertical-align: middle;
+        padding-right: 10px;
+    }
+    &__dropdown {
+        display: table-cell;
+        vertical-align: middle;
+    }
+}

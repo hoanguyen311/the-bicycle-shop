@@ -15,5 +15,6 @@ module.exports = {
     images: path.resolve(pub, 'images'),
     spritesTemplates: path.resolve(root, 'gulp/templates'),
     templates: path.resolve(root, 'templates'),
-    views: path.resolve(root, 'templates/views')
+    views: path.resolve(root, 'templates/views'),
+    backends: [ path.resolve(root, 'models'), path.resolve(root, 'routes') ]
 };

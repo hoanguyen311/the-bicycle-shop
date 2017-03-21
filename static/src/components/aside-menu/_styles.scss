@@ -1,6 +1,5 @@
 .aside-menu {
     background: #26d2fc;
-    padding-bottom: 10px;
     &__heading {
         text-transform: uppercase;
         font-weight: bold;
@@ -28,6 +27,7 @@
         text-decoration: none;
         color: #000000;
         transition: all .1s;
+        cursor: pointer;
         &:hover {
             color: #FFF;
             text-decoration: none;

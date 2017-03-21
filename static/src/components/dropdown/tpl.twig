@@ -1,0 +1,18 @@
+<div class="dropdown {{classMix}} " data-js-component="dropdown" data-js-component-params="{
+    flexibleWidth: {{params.flexibleWidth}},
+    closeOnClickOutSide: {{params.closeOnClickOutSide}}
+}">
+    {% if title %}
+        <div class="dropdown__title">{{title}}
+
+        </div>
+        <div class="dropdown__icon">
+            <i class="glyphicon glyphicon-triangle-bottom"></i>
+        </div>
+    {% endif %}
+    <div class="dropdown__content">
+        {% if sortMenuItems %}
+            {% include "../components/sort-menu.twig" with sortMenuItems %}
+        {% endif %}
+    </div>
+</div>

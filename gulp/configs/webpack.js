@@ -12,7 +12,7 @@ module.exports = function(options) {
                 '~': PATHS.src
             }
         },
-        devtool: 'source-map',
+        devtool: 'cheap-source-map',
         stats: {
             colors: true,
             reasons: true
@@ -37,6 +37,7 @@ module.exports = function(options) {
         },
         plugins: [
             new ProgressBarPlugin()
-        ].concat(options.plugins ? options.plugins : [])
+        ].concat(options.plugins ? options.plugins : []),
+        watch: options.watch
     };
 };

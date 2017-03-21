@@ -1,0 +1,12 @@
+<div class="sort">
+    <div class="sort__label">Sắp xếp theo: </div>
+    <div class="sort__dropdown">
+        {% include "../components/dropdown.twig" with {
+                title: sortOptions.currentSort.label,
+                sortMenuItems: sortOptions,
+                classMix: 'dropdown_type_products-sort',
+                params: { flexibleWidth: true, closeOnClickOutSide: true }
+            }
+        %}
+    </div>
+</div>

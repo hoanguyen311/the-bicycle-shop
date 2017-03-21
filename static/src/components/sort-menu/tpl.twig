@@ -1,0 +1,8 @@
+<div class="sort-menu">
+    {% for option in list %}
+        <a href="?{{option.url}}"
+            class="sort-menu__item {% if option.url == currentSort.url %} sort-menu__item_active {% endif %}">
+            {{option.label}}
+        </a>
+    {% endfor %}
+</div>

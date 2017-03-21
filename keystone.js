@@ -7,6 +7,29 @@ var keystone = require('keystone');
 var Twig = require('twig');
 var fs = require('fs');
 var path = require('path');
+const numeral = require('numeral');
+
+
+numeral.register('locale', 'vi', {
+    delimiters: {
+        thousands: '.',
+        decimal: ','
+    },
+    abbreviations: {
+        thousand: ' nghìn',
+        million: ' triệu',
+        billion: ' tỷ',
+        trillion: ' nghìn tỷ'
+    },
+    ordinal: function (number) {
+        return '.';
+    },
+    currency: {
+        symbol: '₫'
+    }
+});
+
+numeral.locale('vi');
 
 // Initialise Keystone with your project's configuration.
 // See http://keystonejs.com/guide/config for available options
@@ -76,6 +99,15 @@ keystone.set('locals', {
     },
     t: function(text) {
         return text;
+    },
+    formatMoney: function(value) {
+        return numeral(value).format('0,0 $');
+    },
+    calculatePercentage: function(a, b) {
+        const price1 = numeral(a).value();
+        const price2 = numeral(b).value();
+
+        return numeral(1 - price1 / price2).format('0%');
     }
 });
 

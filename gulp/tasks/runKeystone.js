@@ -10,7 +10,7 @@ module.exports = function(gulp) {
             script: 'keystone.js',
             ignore: PATHS.components,
             ext: [ 'js', 'twig' ].join(' '),
-            watch: [ PATHS.templates ]
+            watch: [ PATHS.templates, PATHS.backends ]
         });
     };
 };

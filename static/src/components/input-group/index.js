@@ -10,9 +10,7 @@ class InputGroup extends Base {
         };
     }
     constructor() {
-
         super(...arguments);
-
     }
     init() {
         this.$clearText.on('click', (e) => {

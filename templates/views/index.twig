@@ -26,7 +26,7 @@
 
 {% block sidebarItems %}
     <div class="l-sidebar__item">
-        {% include "../components/aside-menu.twig" %}
+        {% include "../components/aside-menu.twig" with categoriesMenu only %}
     </div>
     <div class="l-sidebar__item">
         {% include '../components/box.twig' with

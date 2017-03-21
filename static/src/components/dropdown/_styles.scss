@@ -1,0 +1,43 @@
+.dropdown {
+    position: relative;
+    &__title {
+        cursor: pointer;
+    }
+    &__content {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        transition: all .2s;
+        @include hide;
+    }
+    &__icon {
+        display: inline-block;
+        transition: all .2s;
+    }
+    &_active &__content {
+        @include show;
+    }
+    &_active &__icon {
+        transform: rotate(180deg);
+    }
+}
+
+.dropdown_type_products-sort .dropdown__icon {
+    position: absolute;
+    top: 11px;
+    right: 10px;
+    font-size: 13px;
+    line-height: 10px;
+}
+.dropdown_type_products-sort .dropdown__title {
+    white-space: nowrap;
+    font-size: 14px;
+    line-height: 16px;
+    padding: 10px 30px 10px 15px;
+    background: #FFF;
+    border: 1px solid #e6e6e6;
+}
+.dropdown_type_products-sort .dropdown__content {
+    border: 1px solid #e6e6e6;
+    border-top: none;
+}

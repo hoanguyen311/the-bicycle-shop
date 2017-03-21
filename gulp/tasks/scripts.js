@@ -7,14 +7,13 @@ const config = require('../configs/components');
 const fs = require('fs');
 const insert = require('gulp-insert');
 const rename = require('gulp-rename');
-const filter = require('gulp-filter');
 const gutil = require('gulp-util');
 const getWebpackConfig = require('../configs/webpack');
 const babel = require('gulp-babel');
-const rev = require('gulp-rev');
 const webpack = require('webpack');
 const webpackStream = require('webpack-stream');
 const generalConfig = require('../configs');
+const ManifestPlugin = require('webpack-manifest-plugin');
 
 function generatePrependCodeFromList(list, page) {
     let prependCode = 'window.__components__ = {};\n';
@@ -52,15 +51,16 @@ const onWebpackBuildDone = (err, stats) => {
     }));
 };
 
-module.exports = function(gulp) {
+module.exports = function(gulp, options) {
 
     class ScriptsBundle extends ComponentBundle {
         getTask(name, list) {
             const prependCode = generatePrependCodeFromList(list, name);
             const webpackConfig = getWebpackConfig({
+                entry: `bundle-${name}.js`,
                 output: {
-                    filename: `bundle-${name}.js`,
-                    sourceMapFilename: `bundle-${name}.js.map`
+                    filename: generalConfig.isProduction ?
+                        `bundle-${name}.[chunkhash].js` : `bundle-${name}.js`
                 },
                 plugins: [
                     new webpack.DefinePlugin({
@@ -68,7 +68,10 @@ module.exports = function(gulp) {
                             NODE_ENV: JSON.stringify(generalConfig.env)
                         }
                     })
-                ]
+                ].concat(generalConfig.isProduction ? [ new ManifestPlugin({
+                    fileName: `js-manifest-${name}.json`
+                }) ] : []),
+                watch: options.watch || false
             });
 
             if (generalConfig.isProduction) {
@@ -85,11 +88,9 @@ module.exports = function(gulp) {
                 webpackConfig.devtool = false;
             }
 
-            const filterJs = filter('**/*.js', { restore: true });
-
             return gulp.src(path.resolve(PATHS.components, 'index.js'))
                 .pipe(insert.append(prependCode))
-                .pipe(rename(`-temp-${config.scriptEntryPrefixer}-${name}.js`))
+                .pipe(rename(`bundle-${name}.js`))
                 .pipe(babel({
                     presets: [ 'es2015', 'stage-0' ],
                     plugins: [
@@ -98,23 +99,18 @@ module.exports = function(gulp) {
                 }))
                 .pipe(gulp.dest(path.resolve(PATHS.scripts, 'entries')))
                 .pipe(webpackStream(webpackConfig, webpack, onWebpackBuildDone))
-                .pipe(filterJs)
-                .pipe(rev())
-                .pipe(filterJs.restore)
-                .pipe(gulp.dest(PATHS.scripts))
-                .pipe(rev.manifest(`rev-manifest-${name}.json`, {
-                    merge: true
-                }))
                 .pipe(gulp.dest(PATHS.scripts));
         }
     }
 
     return function() {
 
-        const bundle = new ScriptsBundle(Object.assign({}, {
+        const stream = new ScriptsBundle(Object.assign({}, {
             viewPath: PATHS.views
-        }, config));
+        }, config)).getStream();
 
-        return bundle.getStream();
+        if (!options.watch) {
+            return stream;
+        }
     };
 };

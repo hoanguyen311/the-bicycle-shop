@@ -1,27 +1,37 @@
-<div class="product-card">
+<div class="product-card" data-js-component="product-card" data-js-component-lazy-init="true">
     <a href="/product" class="product-card__anchor">
         <div class="product-card__image-wrap">
-            {% include '../components/image-lazy.twig'
-                with {
-                    mods: 'image-lazy_type_product-img',
-                    src: product.image,
-                    alt: 'The White Collection SURFBOARD 2014',
-                    aspect: 1,
-                    lazyInit: true
-                }
-            %}
+            {% if noLazyImage %}
+                <img class="product-card__image" src="{{image}}" alt="{{name}}">
+            {% else %}
+                {% include '../components/image-lazy.twig'
+                    with {
+                        mods: 'image-lazy_type_product-img',
+                        src: image,
+                        alt: name,
+                        aspect: 1,
+                        lazyInit: lazyInitImage | default(true)
+                    }
+                %}
+            {% endif %}
         </div>
         <div class="product-card__info">
             <div class="product-card__name">
-                The White Collection SURFBOARD 2014
+                {{name}}
             </div>
             <div class="product-card__price-wrap">
                 <div class="product-card__price">
-                    €.865.000000
+                    {{ formatMoney(price) }}
+                </div>
+
+                {% if oldPrice %}
+                <div class="product-card__saved">
+                    {{ calculatePercentage(price, oldPrice) }}
                 </div>
                 <div class="product-card__old-price">
-                    €.860.00
+                    {{ formatMoney(oldPrice) }}
                 </div>
+                {% endif %}
             </div>
         </div>
     </a>

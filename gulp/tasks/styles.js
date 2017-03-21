@@ -19,10 +19,14 @@ const PATHS = require('../paths');
 const config = require('../configs/components');
 const generalConfig = require('../configs');
 const onUpdateRule = require('../libs/update-sprite-rule');
+const fs = require('fs');
 
 function generatePrependCode(list, page) {
     return list.map((item) => {
         try {
+            fs.statSync(
+                path.resolve(PATHS.components, `${item}/_styles.scss`)
+            );
             return `@import "${item}/styles";`;
         } catch (err) {
             if (err.code === 'ENOENT') {
@@ -39,10 +43,9 @@ function generatePrependCode(list, page) {
     }).join('\n') + '\n';
 }
 
-module.exports = function(gulp) {
+module.exports = function(gulp, options) {
     class StylesBundle extends ComponentBundle {
         getTask(name, list) {
-
             const postcssPlugins = [
                 autoprefixer({
                     browsers: [ 'last 2 versions', 'ie >= 8' ]

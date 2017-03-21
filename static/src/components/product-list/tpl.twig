@@ -1,0 +1,31 @@
+<div class="product-list  product-list_type_grid" data-js-component="product-list">
+    <header class="product-list__heading">
+        <div class="product-list__head-col product-list__head-col_sort">
+            {% include "../components/sort.twig" %}
+        </div>
+        <div class="product-list__head-col product-list__head-col_switcher">
+            {% include "../components/type-switcher.twig" %}
+        </div>
+    </header>
+    <main class="product-list__body">
+        <ul class="product-list__list">
+            {% for product in products %}
+                <li class="product-list__item">
+                    {% include "../components/product-card.twig" with {
+                        image: product.image.url,
+                        name: product.name,
+                        price: product.price,
+                        oldPrice: product.oldPrice,
+                        url: product.slug,
+                        lazyInitImage: false
+                    } %}
+                </li>
+            {% endfor %}
+        </ul>
+    </main>
+    <footer class="product-list__bottom">
+        <div class="product-list__pagination">
+            {% include "../components/pagination.twig" %}
+        </div>
+    </footer>
+</div>

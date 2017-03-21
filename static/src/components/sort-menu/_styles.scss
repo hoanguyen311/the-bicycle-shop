@@ -1,0 +1,22 @@
+.sort-menu {
+    background: #FFF;
+    &__item {
+        display: block;
+        color: #666;
+        white-space: nowrap;
+        font-size: 14px;
+        line-height: 16px;
+        padding: 10px 20px;
+        transition: all .2s;
+        border-bottom: 1px solid rgb(236, 236, 236);
+        &:last-child {
+            border-bottom: none;
+        }
+        &_active, &:hover {
+            text-decoration: none;
+            cursor: pointer;
+            color: #FFF;
+            background: #26d2fc;
+        }
+    }
+}
