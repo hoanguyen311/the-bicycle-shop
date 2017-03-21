@@ -13,7 +13,7 @@ const babel = require('gulp-babel');
 const webpack = require('webpack');
 const webpackStream = require('webpack-stream');
 const generalConfig = require('../configs');
-const ManifestPlugin = require('webpack-manifest-plugin');
+const rev = require('gulp-rev');
 
 function generatePrependCodeFromList(list, page) {
     let prependCode = 'window.__components__ = {};\n';
@@ -57,10 +57,9 @@ module.exports = function(gulp, options) {
         getTask(name, list) {
             const prependCode = generatePrependCodeFromList(list, name);
             const webpackConfig = getWebpackConfig({
-                entry: `bundle-${name}.js`,
+                //entry: `bundle-${name}.js`,
                 output: {
-                    filename: generalConfig.isProduction ?
-                        `bundle-${name}.[chunkhash].js` : `bundle-${name}.js`
+                    filename: `bundle-${name}.js`
                 },
                 plugins: [
                     new webpack.DefinePlugin({
@@ -68,9 +67,7 @@ module.exports = function(gulp, options) {
                             NODE_ENV: JSON.stringify(generalConfig.env)
                         }
                     })
-                ].concat(generalConfig.isProduction ? [ new ManifestPlugin({
-                    fileName: `js-manifest-${name}.json`
-                }) ] : []),
+                ],
                 watch: options.watch || false
             });
 
@@ -88,7 +85,7 @@ module.exports = function(gulp, options) {
                 webpackConfig.devtool = false;
             }
 
-            return gulp.src(path.resolve(PATHS.components, 'index.js'))
+            let stream = gulp.src(path.resolve(PATHS.components, 'index.js'))
                 .pipe(insert.append(prependCode))
                 .pipe(rename(`bundle-${name}.js`))
                 .pipe(babel({
@@ -99,7 +96,14 @@ module.exports = function(gulp, options) {
                 }))
                 .pipe(gulp.dest(path.resolve(PATHS.scripts, 'entries')))
                 .pipe(webpackStream(webpackConfig, webpack, onWebpackBuildDone))
+                .pipe(generalConfig.isProduction ? rev() : gutil.noop())
                 .pipe(gulp.dest(PATHS.scripts));
+            if (generalConfig.isProduction) {
+                stream = stream
+                    .pipe(rev.manifest(`rev-manifest-${name}.json`))
+                    .pipe(gulp.dest(path.resolve(PATHS.scripts)));
+            }
+            return stream;
         }
     }
 
