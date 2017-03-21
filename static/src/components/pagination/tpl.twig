@@ -5,7 +5,7 @@
         <span class="pagination__item pagination__item_disabled">Trang trước</span>
     {% endif %}
     {% for page in pages %}
-        <a href="?page={{page}}" class="pagination__item {% if page == currentPage %}pagination__item_active{% endif %}">{{page}}</a>
+        <a href="?{{page.url}}" class="pagination__item {% if page.label == currentPage %}pagination__item_active{% endif %}">{{page.label}}</a>
     {% endfor %}
 
     {% if next != false %}

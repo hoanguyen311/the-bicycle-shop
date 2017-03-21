@@ -8,7 +8,7 @@ var Twig = require('twig');
 var fs = require('fs');
 var path = require('path');
 const numeral = require('numeral');
-
+const queryString = require('querystring');
 
 numeral.register('locale', 'vi', {
     delimiters: {
@@ -108,6 +108,9 @@ keystone.set('locals', {
         const price2 = numeral(b).value();
 
         return numeral(1 - price1 / price2).format('0%');
+    },
+    stringify: function(data) {
+        return queryString.stringify(data);s
     }
 });
 

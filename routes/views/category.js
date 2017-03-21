@@ -3,55 +3,46 @@ const _ = require('lodash');
 var keystone = require('keystone');
 var Category = keystone.list('Category');
 var Product = keystone.list('Product');
-const helpers = require('../../helpers');
 
-const _sortOptions = {
-    name: 'name',
-    views: 'views',
-    price: 'price'
-};
-
-const _dirs = {
-    asc: 'asc',
-    desc: 'desc'
-};
-
-const getSortOptionsData = (query) => {
+const getSortData = (query) => {
     const list = [
-        { url: 'sort=name&dir=asc', label: 'Tên sản phâm' },
-        { url: 'sort=views&dir=desc', label: 'Lượt xem' },
-        { url: 'sort=price&dir=desc', label: 'Giá (từ cao đến thấp)' },
-        { url: 'sort=price&dir=asc', label: 'Giá (từ thấp đến cao' }
+        { url: { sort: 'name', dir: 'asc' }, label: 'Tên sản phâm' },
+        { url: { sort: 'views', dir: 'desc' }, label: 'Lượt xem' },
+        { url: { sort: 'price', dir: 'desc' }, label: 'Giá (từ cao đến thấp)' },
+        { url: { sort: 'price', dir: 'asc' }, label: 'Giá (từ thấp đến cao' }
     ];
 
     const currentSort = _.find(list, (sortItem) => {
-        const parsed = queryString.parse(sortItem.url);
+        const parsed = sortItem.url;
 
         return (parsed.sort === query.sort &&
             parsed.dir === query.dir);
-    });
+    }) || list[0];
+
+    const currentSortCriteria = {};
+
+    currentSortCriteria[currentSort.url.sort] = currentSort.url.dir;
 
     return {
-        list: list,
-        currentSort: currentSort || list[0]
+        list,
+        currentSort,
+        currentSortCriteria
     };
 };
 
 module.exports = function (req, res) {
     var view = new keystone.View(req, res);
     var locals = res.locals;
-    var sortAttribute = _sortOptions[req.query.sort] || 'name';
-    var direction = _dirs[req.query.dir] || 'asc';
+    var mergeWithCurrentQuery = (newQuery) => {
+        return queryString.stringify(Object.assign({}, req.query, newQuery));
+    };
 
     locals.products = [];
     locals.filter = {
         category: req.params.category
     };
 
-    locals.sort = {};
-    locals.sort[sortAttribute] = direction;
-
-    locals.sortOptions = getSortOptionsData(req.query);
+    locals.sortOptions = getSortData(req.query);
 
     locals.breadcrumb.push({
         url: '/category',
@@ -87,14 +78,19 @@ module.exports = function (req, res) {
             q.where('category').in([ locals.category.id ]);
         }
 
-        q.sort(locals.sort);
+        q.sort(locals.sortOptions.currentSortCriteria);
 
         q.exec(function(err, response) {
 
             locals.productsList = {
                 products: response.results,
                 pagination: {
-                    pages: response.pages,
+                    pages: response.pages.map((page) => {
+                        return {
+                            url: mergeWithCurrentQuery({ page }),
+                            label: page
+                        };
+                    }),
                     currentPage: response.currentPage,
                     previous: response.previous,
                     next: response.next
