@@ -78,7 +78,10 @@ module.exports = function (req, res) {
     view.on('init', function(next) {
         var q = null;
 
-        q = Product.model.find().populate('category');
+        q = Product.paginate({
+            page: req.query.page || 1,
+            perPage: 4
+        }).populate('category');
 
         if (locals.filter.category) {
             q.where('category').in([ locals.category.id ]);
@@ -86,9 +89,16 @@ module.exports = function (req, res) {
 
         q.sort(locals.sort);
 
-        q.exec(function(err, results) {
+        q.exec(function(err, response) {
+
             locals.productsList = {
-                products: results
+                products: response.results,
+                pagination: {
+                    pages: response.pages,
+                    currentPage: response.currentPage,
+                    previous: response.previous,
+                    next: response.next
+                }
             };
             next(err);
         });

@@ -1,9 +1,16 @@
 <div class="pagination">
-    <a href="#" class="pagination__item">Prev</a>
-    <a href="#" class="pagination__item pagination__item_active">1</a>
-    <a href="#" class="pagination__item">2</a>
-    <a href="#" class="pagination__item">3</a>
-    <a href="#" class="pagination__item">4</a>
-    <a href="#" class="pagination__item">5</a>
-    <a href="#" class="pagination__item">Next</a>
+    {% if previous != false %}
+        <a href="?page={{previous}}" class="pagination__item">Trang trước</a>
+    {% else %}
+        <span class="pagination__item pagination__item_disabled">Trang trước</span>
+    {% endif %}
+    {% for page in pages %}
+        <a href="?page={{page}}" class="pagination__item {% if page == currentPage %}pagination__item_active{% endif %}">{{page}}</a>
+    {% endfor %}
+
+    {% if next != false %}
+        <a href="?page={{next}}" class="pagination__item">Trang kế</a>
+    {% else %}
+        <span class="pagination__item pagination__item_disabled">Trang trước</span>
+    {% endif %}
 </div>

@@ -11,4 +11,9 @@
         background: #26d2fc;
         color: #FFF;
     }
+    &_disabled, &_disabled:hover {
+        background: none;
+        color: #a7a7a7;
+        cursor: default;
+    }
 }
