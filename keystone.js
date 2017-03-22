@@ -41,7 +41,7 @@ keystone.init({
 
     //'sass': 'public',
     'static': 'static/public',
-    'favicon': 'public/favicon.ico',
+    'favicon': 'static/public/favicon.ico',
     'views': 'templates/views',
     'view engine': 'twig',
 
@@ -110,7 +110,7 @@ keystone.set('locals', {
         return numeral(1 - price1 / price2).format('0%');
     },
     stringify: function(data) {
-        return queryString.stringify(data);s
+        return queryString.stringify(data);
     }
 });
 

@@ -3,6 +3,7 @@ const _ = require('lodash');
 var keystone = require('keystone');
 var Category = keystone.list('Category');
 var Product = keystone.list('Product');
+var Tag = keystone.list('Tag');
 
 const getSortData = (query) => {
     const list = [
@@ -39,7 +40,8 @@ module.exports = function (req, res) {
 
     locals.products = [];
     locals.filter = {
-        category: req.params.category
+        category: req.params.category,
+        tag: req.params.tag
     };
 
     locals.sortOptions = getSortData(req.query);
@@ -67,16 +69,38 @@ module.exports = function (req, res) {
     });
 
     view.on('init', function(next) {
+        if (locals.filter.tag) {
+            Tag.model.findOne({ slug: locals.filter.tag })
+            .exec(function(err, result) {
+                locals.tag = result;
+
+                locals.breadcrumb.push({
+                    label: '#' + result.name
+                });
+
+                next(err);
+            });
+        } else {
+            next();
+        }
+    });
+
+    view.on('init', function(next) {
         var q = null;
+        var filters = {};
+
+        if (locals.filter.category) {
+            filters = { category: { $in: [ locals.category.id ] } };
+        }
+        if (locals.filter.tag) {
+            filters = { tags: { $all: [ locals.tag.id ] } };
+        }
 
         q = Product.paginate({
             page: req.query.page || 1,
-            perPage: 4
+            perPage: 4,
+            filters: filters
         }).populate('category');
-
-        if (locals.filter.category) {
-            q.where('category').in([ locals.category.id ]);
-        }
 
         q.sort(locals.sortOptions.currentSortCriteria);
 

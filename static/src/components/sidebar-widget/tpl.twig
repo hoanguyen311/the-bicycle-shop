@@ -3,7 +3,9 @@
         {{ heading }}
     </div>
     <div class="sidebar-widget__content">
-        {% block sidebarWidgetContent %}{% endblock %}
+        {% if tags %}
+            {% include "../components/tags.twig" with { tags: tags } %}
+        {% endif %}
     </div>
     <a href="{{ link }}" class="sidebar-widget__view-all">
         View All

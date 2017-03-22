@@ -9,23 +9,8 @@
  */
 var _ = require('lodash');
 var Category = require('keystone').list('Category');
+var Tag = require('keystone').list('Tag');
 
-function getCategoryMenuData(callback) {
-    var q = Category.model.find();
-
-    q.exec(function(err, results) {
-        var children = [];
-
-        if (!err && results) {
-            children = results.map((categoryItem) => ({
-                label: categoryItem.name,
-                key: `category-${categoryItem.slug}`,
-                href: `/category/${categoryItem.slug}`
-            }));
-        }
-        return callback(err, children);
-    });
-}
 
 /**
     Initialises the standard view locals
@@ -43,16 +28,26 @@ exports.initLocals = function (req, res, next) {
 
     res.locals.categoriesMenu = [];
 
-    getCategoryMenuData(function(err, children) {
-        res.locals.categoriesMenu = {
-            heading: 'Danh mục sản phẩm',
-            items: children
-        };
-        next(err);
-    });
-
+    Promise.all([
+        Category.model.find().exec(),
+        Tag.model.find().exec()
+    ])
+        .then(function(results) {
+            res.locals.categoriesMenu = {
+                heading: 'Danh mục sản phẩm',
+                items: results[0].map((categoryItem) => ({
+                    label: categoryItem.name,
+                    key: `category-${categoryItem.slug}`,
+                    href: `/category/${categoryItem.slug}`
+                }))
+            };
+            res.locals.tags = results[1];
+            next();
+        })
+        .catch(function(err) {
+            next(err);
+        });
 };
-
 
 /**
     Fetches and clears the flashMessages before a view is rendered

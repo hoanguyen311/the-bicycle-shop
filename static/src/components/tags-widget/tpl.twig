@@ -1,7 +1,4 @@
-{% embed "../components/sidebar-widget.twig" with
-    { heading: 'Tags Widget' } only
-%}
-    {% block sidebarWidgetContent %}
-        {% include "../components/tags.twig" %}
-    {% endblock %}
-{% endembed %}
+{% include "../components/sidebar-widget.twig" with {
+    heading: '#tags',
+    tags: tags
+} %}

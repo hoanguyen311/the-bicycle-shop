@@ -1,17 +1,7 @@
 <ul class="tags">
-    <li class="tags__item">
-        <a href="#" class="tags__anchor">Kitesurf</a>
-    </li>
-    <li class="tags__item">
-        <a href="#" class="tags__anchor">Super</a>
-    </li>
-    <li class="tags__item">
-        <div class="tags__anchor">Equipment</div>
-    </li>
-    <li class="tags__item">
-        <div class="tags__anchor">Apparel </div>
-    </li>
-    <li class="tags__item">
-        <div class="tags__anchor">Super</div>
-    </li>
+    {% for tag in tags %}
+        <li class="tags__item">
+            <a href="/tag/{{tag.slug}}" class="tags__anchor">#{{tag.name}}</a>
+        </li>
+    {% endfor %}
 </ul>
