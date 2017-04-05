@@ -1,0 +1,105 @@
+.cart-products {
+    width: 100%;
+    border-collapse: collapse;
+    &__row {
+        &_head {
+            font-size: 13px;
+            color: #000000;
+        }
+    }
+    &__item {
+        background: #FFFFFF;
+        &:last-child {
+            border-bottom: none;
+        }
+
+        &.product-item-appear,
+        &.product-item-enter {
+            opacity: 0;
+        }
+        &.product-item-appear.product-item-appear-active,
+        &.product-item-enter.product-item-enter-active {
+            opacity: 1;
+            transition: opacity .2s linear;
+        }
+        &.product-item-leave {
+            opacity: 1;
+        }
+        &.product-item-leave.product-item-leave-active {
+            opacity: 0;
+            transition: opacity .4s linear;
+        }
+        &_spacer {
+            border: none;
+            background: transparent;
+        }
+    }
+    &__head-col {
+        text-transform: uppercase;
+        font-weight: normal;
+        text-align: center;
+        padding: 10px 0;
+        white-space: nowrap;
+        background: #FFF;
+        &_order_4th {
+            width: 30px;
+        }
+        &_order_3rd {
+            text-align: left;
+        }
+    }
+    &__col {
+        padding: 20px 20px;
+        vertical-align: top;
+        &_order_1st {
+            width: 140px;
+            vertical-align: middle;
+        }
+        &_order_2nd {
+            position: relative;
+            text-align: left;
+            padding-left: 0px;
+        }
+        &_order_3rd {
+            padding-left: 0px;
+        }
+        &_order_4th {
+            text-align: center;
+        }
+        &_order_5th {
+            text-align: center;
+        }
+        &_spacer {
+            padding: 5px 0;
+        }
+    }
+    &__move-to-wishlist {
+        position: absolute;
+        bottom: 14px;
+        left: 10px;
+        color: #199cb7;
+        font-size: 12px;
+        font-weight: 18px;
+        cursor: pointer;
+        &::before {
+            content: '❤️ ';
+            margin-right: 5px;
+        }
+        &:hover::before {
+            content: '💛 ';
+        }
+    }
+    &__remove-item {
+        cursor: pointer;
+        &::before {
+            content: '';
+            width: 18px;
+            height: 24px;
+            display: inline-block;
+            background: url('./images/rubbish-bin.svg');
+        }
+        &_is-blocked::before {
+            opacity: .5;
+        }
+    }
+}
